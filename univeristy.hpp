@@ -4,12 +4,9 @@
 #include <vector> 
 #include "student.hpp"
 
-class University
-{
-    
-public:
+class University {
     std::vector<Student> university_;
-        
+public: 
     University(const Student&);
     ~University();
    
