@@ -93,3 +93,44 @@ bool University::validationByPesel(const std::string& pesel){
     return result == lastNumber;
 }
 
+void University::exportDatabase() {
+    std::ofstream Database;
+    Database.open("university-db-exported.csv");
+    if (Database.is_open()) {
+        for (auto& itStudent : university_) {
+            Database << itStudent.getName() << ","
+                     << itStudent.getLname() << ","
+                     << itStudent.getAdress() << ","
+                     << itStudent.getIndex() << ","
+                     << itStudent.getPesel() << ","
+                     << itStudent.getGender() << "\n";
+        }
+        Database.close();
+    } else
+        std::cout << "Unable to open file";
+}
+
+void University::importDatabase() {
+    std::ifstream Database("university-db.csv");
+    std::string line;
+    if (Database.is_open()) {
+        size_t iLine = 0;
+        while (Database.peek()) {
+            getline(Database, line, ',');
+            university_[iLine].setName(line);
+            getline(Database, line, ',');
+            university_[iLine].setLname(line);
+            getline(Database, line, ',');
+            university_[iLine].setAdress(line);
+            getline(Database, line, ',');
+            university_[iLine].setIndex(std::stoi(line));
+            getline(Database, line, ',');
+            university_[iLine].setPesel(line);
+            getline(Database, line, ',');
+            university_[iLine].setGender(line);
+            iLine += 1;
+        }
+        Database.close();
+    } else
+        std::cout << "Unable to open file";
+}

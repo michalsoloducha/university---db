@@ -4,6 +4,7 @@
 #include <vector> 
 #include <string>
 #include <array>
+#include <fstream>
 #include "Student.hpp"
 
 class University
@@ -23,10 +24,9 @@ public:
     void sortByPesel();
     void sortbyLname();
     void removeByIndexNumber();
-    bool validationByPesel(const std::string&);  
-    
-    //void writeToFIle();
-    //void readFile();
+    bool validationByPesel(const std::string&);
+    void exportDatabase();
+    void importDatabase();
 
     // pomyślec jak dodać walidację pracownika.
 };
